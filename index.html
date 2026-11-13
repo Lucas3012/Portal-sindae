@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINDAE-BA | Sindicato dos Trabalhadores em Água, Esgoto e Meio Ambiente na Bahia</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#e6f2ff',
+                            100: '#cce5ff',
+                            600: '#0056b3',
+                            700: '#003d82',
+                            900: '#002244',
+                            cyan: '#00bcd4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Chart.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Top Bar: Contatos e Acessos Rápidos -->
+    <div class="bg-brand-900 text-slate-200 text-xs py-2 px-4 border-b border-brand-700">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt text-brand-cyan mr-1"></i> Rua General Labatut, 65, Barris, Salvador - BA</span>
+                <span><i class="fas fa-phone-alt text-brand-cyan mr-1"></i> (71) 3111-1700</span>
+                <span><i class="fab fa-whatsapp text-green-400 mr-1"></i> Jurídico: (71) 99718-0853</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#filiacao" class="bg-brand-cyan text-brand-900 font-bold px-3 py-1 rounded hover:bg-cyan-400 transition">Filie-se</a>
+                <a href="#boletim" class="hover:text-brand-cyan transition"><i class="fas fa-envelope mr-1"></i> Boletim Eletrônico</a>
+                <button id="theme-toggle" class="hover:text-brand-cyan transition p-1"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-slate-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-brand-600 text-white p-2.5 rounded-xl font-black text-xl tracking-wider">
+                    SINDAE
+                </div>
+                <div>
+                    <h1 class="text-base font-bold text-brand-900 dark:text-white leading-tight">SINDAE-BA</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Sindicato dos Trabalhadores em Água, Esgoto e Meio Ambiente</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-6 font-medium text-sm">
+                <a href="#" class="text-brand-600 dark:text-brand-cyan font-semibold">Home</a>
+                <div class="relative group">
+                    <button class="flex items-center gap-1 hover:text-brand-600 py-2">A Entidade <i class="fas fa-chevron-down text-xs"></i></button>
+                    <div class="absolute top-full left-0 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-md py-2 hidden group-hover:block border dark:border-slate-700">
+                        <a href="#diretoria" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">Diretoria Atual</a>
+                        <a href="#estatuto" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">Estatuto</a>
+                        <a href="#historico" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">Histórico</a>
+                    </div>
+                </div>
+                <a href="#acordos" class="hover:text-brand-600 transition">Acordos Coletivos</a>
+                <a href="#juridico" class="hover:text-brand-600 transition">Jurídico</a>
+                <a href="#noticias" class="hover:text-brand-600 transition">Notícias</a>
+                <a href="#dashboard" class="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition flex items-center gap-2"><i class="fas fa-chart-line"></i> Dashboard BI</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-brand-900 dark:text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-800 border-t dark:border-slate-700 px-4 py-4 space-y-3">
+            <a href="#" class="block font-medium text-brand-600">Home</a>
+            <a href="#acordos" class="block font-medium">Acordos Coletivos</a>
+            <a href="#juridico" class="block font-medium">Jurídico</a>
+            <a href="#noticias" class="block font-medium">Notícias</a>
+            <a href="#dashboard" class="block bg-brand-600 text-white text-center py-2 rounded-lg font-medium">Dashboard BI</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+
+        <!-- Destaques & Manchetes Principais -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Manchete Principal -->
+            <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl shadow-md overflow-hidden flex flex-col justify-between border border-slate-100 dark:border-slate-700">
+                <div class="relative bg-brand-900 h-72 flex items-end p-6 bg-gradient-to-t from-black/80 to-transparent">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-brand-900 text-xs font-bold px-3 py-1 rounded-full uppercase">Destaque Principal</span>
+                    <div class="text-white z-10">
+                        <span class="text-xs text-slate-300"><i class="far fa-calendar-alt mr-1"></i> 11 de Novembro de 2026</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-1 leading-tight">Sindae reforça defesa da Embasa em audiência pública sobre abastecimento na zona rural</h2>
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        O Sindae defende que o acesso à água potável e de qualidade deve ser garantido a todos os cidadãos, independentemente do poder aquisitivo ou do local de moradia, repudiando qualquer tentativa de precarização dos serviços...
+                    </p>
+                    <div class="flex justify-between items-center pt-2 border-t dark:border-slate-700">
+                        <span class="text-xs text-slate-500">Por Comunicação Sindae-BA</span>
+                        <button onclick="openModal('Audiência Pública Embasa', 'O Sindae defende que o acesso à água potável e de qualidade deve ser garantido a todos... Na oportunidade, o sindicato cobrou investimentos diretos na zona rural de Feira de Santana.')" class="text-brand-600 dark:text-brand-cyan font-bold text-sm hover:underline flex items-center gap-1">Ler matéria completa <i class="fas fa-arrow-right text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lateral de Notícias Rápidas -->
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md border border-slate-100 dark:border-slate-700">
+                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded">PPR 2026</span>
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm mt-2">Sindae cobra melhorias e pagamento integral do PPR 2026 da Embasa</h3>
+                    <p class="text-xs text-slate-500 mt-1">Trabalhadores cumpriram metas estabelecidas e exigem transparência nas negociações.</p>
+                    <button onclick="openModal('Cobrança do PPR 2026', 'O Sindae reuniu-se com as diretorias de Gestão Corporativa e Financeira da Embasa cobrando o pagamento justo do PPR.')" class="mt-3 text-xs text-brand-600 dark:text-brand-cyan font-semibold hover:underline">Ver detalhes →</button>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md border border-slate-100 dark:border-slate-700">
+                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2.5 py-0.5 rounded">Negociação</span>
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm mt-2">Presidente da Embasa retoma agenda de pautas da categoria</h3>
+                    <p class="text-xs text-slate-500 mt-1">Discussões sobre aditivos ao Acordo Coletivo de Trabalho (ACT) voltam à mesa.</p>
+                    <button onclick="openModal('Agenda com a Presidência', 'Retomada de pautas fundamentais e aditivos pendentes ao ACT.')" class="mt-3 text-xs text-brand-600 dark:text-brand-cyan font-semibold hover:underline">Ver detalhes →</button>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md border border-slate-100 dark:border-slate-700">
+                    <span class="bg-red-100 text-red-800 text-[10px] font-bold px-2.5 py-0.5 rounded">Trabalhista</span>
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm mt-2">Escala 5x2 é virada trabalhista fundamental para terceirizados</h3>
+                    <p class="text-xs text-slate-500 mt-1">Impacto direto sobre equipes de varrição, coleta e manutenção de redes.</p>
+                    <button onclick="openModal('Escala 5x2', 'Discussão sobre impactos da escala para trabalhadores terceirizados.')" class="mt-3 text-xs text-brand-600 dark:text-brand-cyan font-semibold hover:underline">Ver detalhes →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD ESTATÍSTICO INTERATIVO -->
+        <section id="dashboard" class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b pb-4 dark:border-slate-700">
+                <div>
+                    <h2 class="text-xl font-extrabold text-brand-900 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-chart-pie text-brand-cyan"></i> Dashboard Sindical & Estatísticas
+                    </h2>
+                    <p class="text-xs text-slate-500">Monitoramento em tempo real de campanhas, atendimentos e indicadores da categoria.</p>
+                </div>
+                <div class="flex gap-2 bg-slate-100 dark:bg-slate-700 p-1 rounded-lg">
+                    <button onclick="switchDashboardTab('geral')" id="btn-geral" class="px-3 py-1.5 text-xs font-bold rounded-md bg-white dark:bg-slate-600 shadow transition">Visão Geral</button>
+                    <button onclick="switchDashboardTab('empresas')" id="btn-empresas" class="px-3 py-1.5 text-xs font-bold rounded-md text-slate-600 dark:text-slate-300 transition">Empresas</button>
+                    <button onclick="switchDashboardTab('juridico')" id="btn-juridico" class="px-3 py-1.5 text-xs font-bold rounded-md text-slate-600 dark:text-slate-300 transition">Plantão Jurídico</button>
+                </div>
+            </div>
+
+            <!-- KPIs Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Trabalhadores Filiados</p>
+                    <h3 class="text-2xl font-black text-brand-600 dark:text-brand-cyan mt-1">12.450</h3>
+                    <span class="text-[10px] text-green-600 font-bold bg-green-100 px-1.5 py-0.5 rounded mt-2 inline-block">+4.2% este ano</span>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Acordos Coletivos Ativos</p>
+                    <h3 class="text-2xl font-black text-brand-900 dark:text-white mt-1">38</h3>
+                    <span class="text-[10px] text-blue-600 font-bold bg-blue-100 px-1.5 py-0.5 rounded mt-2 inline-block">100% Homologados</span>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Atendimentos Jurídicos / Mês</p>
+                    <h3 class="text-2xl font-black text-brand-600 dark:text-brand-cyan mt-1">340</h3>
+                    <span class="text-[10px] text-amber-600 font-bold bg-amber-100 px-1.5 py-0.5 rounded mt-2 inline-block">Plantão Semanal</span>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Municípios Cobertos</p>
+                    <h3 class="text-2xl font-black text-brand-900 dark:text-white mt-1">417</h3>
+                    <span class="text-[10px] text-purple-600 font-bold bg-purple-100 px-1.5 py-0.5 rounded mt-2 inline-block">Estado da Bahia</span>
+                </div>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
+                <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <h4 class="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Evolução de Reajustes vs. INPC (%)</h4>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="chartReajuste"></canvas>
+                    </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <h4 class="text-sm font-bold text-slate-700 dark:text-slate-200 mb-3">Distribuição por Empresa na Base</h4>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="chartEmpresas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editais e Serviços -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Editais & Convocações -->
+            <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-brand-900 dark:text-white"><i class="fas fa-bullhorn text-brand-cyan mr-2"></i> Editais & Convocações</h3>
+                    <input type="text" id="search-editais" placeholder="Filtrar por empresa..." class="text-xs px-3 py-1.5 rounded-lg border dark:bg-slate-700 dark:border-slate-600">
+                </div>
+                <div class="space-y-3" id="list-editais">
+                    <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex justify-between items-center edital-item" data-text="saae correntina">
+                        <div>
+                            <span class="text-[10px] bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded">11/09/2026</span>
+                            <h4 class="text-sm font-bold mt-1">SAAE de Correntina: Comunicado de Paralisação</h4>
+                        </div>
+                        <a href="#" class="text-xs bg-brand-600 text-white px-3 py-1.5 rounded hover:bg-brand-700">Ver Edital</a>
+                    </div>
+                    <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex justify-between items-center edital-item" data-text="embasa">
+                        <div>
+                            <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">28/08/2026</span>
+                            <h4 class="text-sm font-bold mt-1">EMBASA | Edital de Convocação Assembleia Geral</h4>
+                        </div>
+                        <a href="#" class="text-xs bg-brand-600 text-white px-3 py-1.5 rounded hover:bg-brand-700">Ver Edital</a>
+                    </div>
+                    <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg flex justify-between items-center edital-item" data-text="cetrel dac">
+                        <div>
+                            <span class="text-[10px] bg-purple-100 text-purple-800 font-bold px-2 py-0.5 rounded">12/08/2026</span>
+                            <h4 class="text-sm font-bold mt-1">CETREL e DAC: Edital de Convocação AGE</h4>
+                        </div>
+                        <a href="#" class="text-xs bg-brand-600 text-white px-3 py-1.5 rounded hover:bg-brand-700">Ver Edital</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plantão Jurídico -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 space-y-4">
+                <h3 class="text-lg font-bold text-brand-900 dark:text-white"><i class="fas fa-balance-scale text-brand-cyan mr-2"></i> Plantão Jurídico</h3>
+                <div class="space-y-3 text-xs">
+                    <div class="p-3 border-l-4 border-brand-600 bg-slate-50 dark:bg-slate-700/50 rounded-r-lg">
+                        <span class="font-bold text-brand-600 dark:text-brand-cyan">Terças-feiras</span>
+                        <p class="font-semibold text-slate-700 dark:text-slate-200 mt-0.5">Dra. Gabriela</p>
+                        <p class="text-slate-500">Manhã (8h30 às 12h) | Tarde (13h30 às 17h30)</p>
+                    </div>
+                    <div class="p-3 border-l-4 border-brand-600 bg-slate-50 dark:bg-slate-700/50 rounded-r-lg">
+                        <span class="font-bold text-brand-600 dark:text-brand-cyan">Quartas-feiras</span>
+                        <p class="font-semibold text-slate-700 dark:text-slate-200 mt-0.5">Dr. Eduardo</p>
+                        <p class="text-slate-500">Manhã (8h30 às 12h) | Tarde (13h30 às 17h30)</p>
+                    </div>
+                    <div class="p-3 border-l-4 border-brand-600 bg-slate-50 dark:bg-slate-700/50 rounded-r-lg">
+                        <span class="font-bold text-brand-600 dark:text-brand-cyan">Quintas-feiras</span>
+                        <p class="font-semibold text-slate-700 dark:text-slate-200 mt-0.5">Dr. Daniel</p>
+                        <p class="text-slate-500">Manhã (8h30 às 12h) | Tarde (13h30 às 17h30)</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5571997180853" target="_blank" class="block text-center bg-green-600 text-white font-bold py-2 rounded-lg hover:bg-green-700 transition text-xs">
+                    <i class="fab fa-whatsapp mr-1"></i> Falar com o Jurídico via WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-slate-300 py-8 px-4 mt-12 border-t border-brand-700 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-white text-sm">SINDAE-BA</p>
+                <p class="mt-1">Rua General Labatut, Nº 65, Barris, Salvador - Bahia - CEP 40070-100</p>
+            </div>
+            <div>
+                <p>Secretaria: <a href="mailto:secretaria@sindae-ba.org.br" class="text-brand-cyan underline">secretaria@sindae-ba.org.br</a></p>
+                <p class="mt-1">Telefone: (71) 3111-1700 | Fax: (71) 3013-6913</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Interativo -->
+    <div id="modal" class="fixed inset-0 bg-black/60 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 max-w-lg w-full p-6 rounded-2xl shadow-2xl space-y-4 border dark:border-slate-700">
+            <div class="flex justify-between items-center border-b pb-3 dark:border-slate-700">
+                <h3 id="modal-title" class="text-lg font-bold text-brand-900 dark:text-white">Título</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+            </div>
+            <p id="modal-body" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            <div class="flex justify-end pt-2">
+                <button onclick="closeModal()" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-brand-700">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
+    <script src="script.js"></script>
+</body>
+</html>
