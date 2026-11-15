@@ -1,6 +1,7 @@
 // Assistente Virtual Sindy - Inteligência de Atendimento SINDAE-BA
 (function () {
-    const SINDY_PHOTO = "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=250&q=80";
+    // Ícone vetorial SVG moderno de um atendente de telemarketing com headset
+    const SINDY_SVG_ICON = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h1v-8H5v-2a7 7 0 0 1 14 0v2h-2v8h1c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9zm-1 17h2v5h-2v-5zm10-7h-1.07A8.02 8.02 0 0 0 12 3a8.02 8.02 0 0 0-7.93 8H3v2h1.07A8.016 8.016 0 0 0 12 21a8.016 8.016 0 0 0 7.93-8H21v-2z"/></svg>`;
 
     const knowledgeBase = [
         {
@@ -94,15 +95,15 @@
         const container = document.createElement('div');
         container.innerHTML = `
             <button id="sindy-launcher" aria-label="Abrir chat com a Sindy" title="Falar com a Sindy">
-                <img src="${SINDY_PHOTO}" alt="Sindy - Atendente SINDAE-BA">
+                <img src="${SINDY_SVG_ICON}" alt="Ícone Atendente Telemarketing" style="width: 34px; height: 34px;" />
                 <span class="sindy-pulse"></span>
             </button>
 
             <div id="sindy-window" role="dialog" aria-label="Atendimento Virtual Sindy">
                 <div class="sindy-header">
                     <div class="flex items-center gap-3">
-                        <div class="sindy-avatar">
-                            <img src="${SINDY_PHOTO}" alt="Sindy">
+                        <div class="sindy-avatar" style="display: flex; align-items: center; justify-content: center; background: #0056b3;">
+                            <img src="${SINDY_SVG_ICON}" alt="Sindy" style="width: 24px; height: 24px;" />
                         </div>
                         <div>
                             <div class="font-bold text-sm flex items-center gap-1.5">
