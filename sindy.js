@@ -1,5 +1,7 @@
 // Assistente Virtual Sindy - Inteligência de Atendimento SINDAE-BA
 (function () {
+    const SINDY_PHOTO = "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=250&q=80";
+
     const knowledgeBase = [
         {
             keywords: ['juridico', 'jurídico', 'advogado', 'processo', 'acao', 'ação', 'gabriela', 'eduardo', 'daniel', 'plantao', 'plantão'],
@@ -45,7 +47,7 @@
         },
         {
             keywords: ['oi', 'ola', 'olá', 'bom dia', 'boa tarde', 'boa noite', 'tudo bem', 'ajuda', 'menu'],
-            answer: `Olá! Eu sou a <strong>Sindy</strong>, assistente virtual do SINDAE-BA 💧.<br><br>
+            answer: `Olá! Eu sou a <strong>Sindy</strong>, atendente virtual do SINDAE-BA 💧.<br><br>
             Posso te ajudar com informações sobre:<br>
             • ⚖️ <strong>Plantão Jurídico</strong> e horários<br>
             • 🤝 <strong>Filiação Sindical</strong><br>
@@ -91,19 +93,20 @@
 
         const container = document.createElement('div');
         container.innerHTML = `
-            <button id="sindy-launcher" aria-label="Abrir chat com a Sindy">
+            <button id="sindy-launcher" aria-label="Abrir chat com a Sindy" title="Falar com a Sindy">
+                <img src="${SINDY_PHOTO}" alt="Sindy - Atendente SINDAE-BA">
                 <span class="sindy-pulse"></span>
-                <i class="fas fa-robot text-lg"></i>
-                <span>Falar com a Sindy</span>
             </button>
 
             <div id="sindy-window" role="dialog" aria-label="Atendimento Virtual Sindy">
                 <div class="sindy-header">
                     <div class="flex items-center gap-3">
-                        <div class="sindy-avatar">S</div>
+                        <div class="sindy-avatar">
+                            <img src="${SINDY_PHOTO}" alt="Sindy">
+                        </div>
                         <div>
                             <div class="font-bold text-sm flex items-center gap-1.5">
-                                Sindy • IA SINDAE-BA
+                                Sindy • Atendimento SINDAE-BA
                                 <span class="inline-block w-2 h-2 rounded-full bg-green-400"></span>
                             </div>
                             <div class="text-[11px] text-cyan-200">Online agora • Atendimento 24h</div>
@@ -114,7 +117,7 @@
 
                 <div id="sindy-messages" class="sindy-messages">
                     <div class="sindy-msg bot">
-                        Olá! 👋 Sou a <strong>Sindy</strong>, assistente virtual do <strong>SINDAE-BA</strong>.<br><br>
+                        Olá! 👋 Sou a <strong>Sindy</strong>, atendente virtual do <strong>SINDAE-BA</strong>.<br><br>
                         Como posso ajudar você hoje? Escolha um tema abaixo ou digite sua pergunta:
                     </div>
                 </div>
